@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:12:55 by ssiddiqu          #+#    #+#             */
-/*   Updated: 2024/08/28 15:00:19 by marvin           ###   ########.fr       */
+/*   Updated: 2024/09/05 20:46:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,15 @@ int	check_da_time(t_philo *philo, t_share *share)
 
 int	setting_da_end(t_philo *philo)
 {
+	if (check_da_ending(philo))
+		return (1);
 	pthread_mutex_lock(&philo->share->ending);
 	*(philo->dead_flag) = 1;
 	pthread_mutex_unlock(&philo->share->ending);
+	pthread_mutex_lock(&philo->share->write_lock);
+	printf("%ld %d died\n",
+		current_time() - philo->share->start_time, philo->id);
+	pthread_mutex_unlock(&philo->share->write_lock);
 	return (0);
 }
 
@@ -58,30 +64,3 @@ int	check_if_death(t_philo *philo)
 	}
 	return (0);
 }
-
-// void	*monitoring(void *p)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_philo *philo;
-	
-// 	philo = (t_philo *)p;
-// 	while (1)
-// 	{
-// 		i = -1;
-// 		j = 0;
-// 		while (++i < philo->share->num_philos)
-// 		{
-// 			philo = &philo[i];
-// 			if (check_if_death(philo))
-// 				break ;
-// 			if (philo->share->meals_r != 1 && check_da_meals(philo))
-// 				j++;
-// 		}
-// 		if (philo->share->meals_r != -1 && j == philo->share->num_philos)
-// 			setting_da_end(philo);
-// 		if (check_da_ending(philo))
-// 			break ;
-// 	}
-// 	return (NULL);
-// }

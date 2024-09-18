@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssiddiqu <ssiddiqu@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 18:12:53 by ssiddiqu          #+#    #+#             */
-/*   Updated: 2024/08/24 13:28:27 by ssiddiqu         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:40:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
-
-
 
 typedef struct s_share
 {
@@ -47,7 +45,7 @@ typedef struct s_philo
 	int				*rf;
 	int				*lf;
 	int				meals;
-	int				last_meal;
+	size_t			last_meal;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	t_share			*share;

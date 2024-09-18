@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:19:17 by ssiddiqu          #+#    #+#             */
-/*   Updated: 2024/08/28 14:28:08 by marvin           ###   ########.fr       */
+/*   Updated: 2024/09/05 20:55:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	checking(int ac, char **av)
 	if ((ac < 5) || (ac > 6) || !(number(ac, av)))
 		return (write(2, "Incorrect parameters!\n", 23));
 	if ((ft_atoi(av[1]) < 1) || (ft_atoi(av[1]) > 200))
-		return (write(2, "Use between 1 - 200 philos\n", 28));
+		return (write(2, "Use more than one philo\n", 25));
 	if ((ft_atoi(av[2]) < 1) || (ft_atoi(av[2]) > INT_MAX))
 		return (write(2, "Use numbers within range\n", 26));
 	if ((ft_atoi(av[3]) < 1) || (ft_atoi(av[3]) > INT_MAX))
@@ -48,4 +48,3 @@ int	checking(int ac, char **av)
 			return (write(2, "Use numbers within range\n", 26));
 	return (1);
 }
-

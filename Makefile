@@ -17,7 +17,7 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -g3 -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -fsanitize=thread $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

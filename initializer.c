@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 19:32:56 by ssiddiqu          #+#    #+#             */
-/*   Updated: 2024/08/28 16:04:22 by marvin           ###   ########.fr       */
+/*   Updated: 2024/09/05 19:21:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	init_philo(t_philo *philo, t_share *share)
 		philo[i].id = i + 1;
 		philo[i].dead_flag = &share->died;
 		philo[i].meals = 0;
-		philo[i].last_meal = 0;
+		philo[i].last_meal = current_time();
 		philo[i].share = share;
 		philo[i].l_fork = &share->forks_mu[i];
 		if (i == share->num_philos - 1)
@@ -74,12 +74,6 @@ int	init_philo(t_philo *philo, t_share *share)
 			philo[i].rf = &share->fork[0];
 		else
 			philo[i].rf = &share->fork[i + 1];
-		// if (philo[i].id == 0)
-		// 	philo[i].l_fork = &share->forks_mu[share->num_philos- 1];
-		// else
-		// 	philo[i].l_fork = &share->forks_mu[philo[i].id - 1];
-		// philo[i].r_fork = &share->forks_mu[((i + 1) % share->num_philos) - 1];
-		// philo[i].rf = &share->fork[((i + 1) % share->num_philos) - 1];
 		// if (philo[i].id == 0)
 		// 	philo[i].lf = &share->fork[share->num_philos - 1];
 		// else
