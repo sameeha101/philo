@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	if (!checking(ac, av))
 		return (-1);
 	if (!pro_initialize(&share, ac, av))
-		return (-1);\
+		return (-1);
 	philo = malloc(sizeof(t_philo) * share.num_philos);
 	if (!philo)
 		return (-1);

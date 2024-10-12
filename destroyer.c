@@ -17,10 +17,9 @@ void	destroying(t_share *share)
 	int	i;
 
 	i = -1;
-	pthread_mutex_destroy(&share->meal_lock);
 	pthread_mutex_destroy(&share->write_lock);
-	pthread_mutex_destroy(&share->starting);
 	pthread_mutex_destroy(&share->ending);
+	pthread_mutex_destroy(&share->printed);
 	while (++i < share->num_philos)
 		pthread_mutex_destroy(&share->forks_mu[i]);
 }

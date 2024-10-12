@@ -62,7 +62,6 @@ int	ft_usleep(size_t miliseconds, t_philo *philo)
 
 	if (check_da_ending(philo))
 		return (0);
-	// miliseconds *= 100;
 	start_time = current_time();
 	while ((current_time() - start_time) < miliseconds)
 	{
@@ -80,10 +79,13 @@ int	ft_usleep(size_t miliseconds, t_philo *philo)
 
 void	printing(t_philo *philo, char *str)
 {
-	if (check_da_ending(philo))
-		return ;
 	pthread_mutex_lock(&philo->share->write_lock);
-	printf("%lu %d %s\n", current_time() - philo->share->start_time,
-		philo->id, str);
+	{
+		if (!check_da_ending(philo))
+		{
+			printf("%lu %d %s\n", current_time() - philo->share->start_time,
+				philo->id, str);
+		}
+	}
 	pthread_mutex_unlock(&philo->share->write_lock);
 }

@@ -17,9 +17,8 @@ static void	mutex_init(t_share *share)
 	int	i;
 
 	i = -1;
-	pthread_mutex_init(&share->meal_lock, NULL);
 	pthread_mutex_init(&share->write_lock, NULL);
-	pthread_mutex_init(&share->starting, NULL);
+	pthread_mutex_init(&share->printed, NULL);
 	pthread_mutex_init(&share->ending, NULL);
 	while (++i < share->num_philos)
 		pthread_mutex_init(&share->forks_mu[i], NULL);
@@ -36,6 +35,7 @@ int	pro_initialize(t_share *share, int ac, char **av)
 	share->to_eat = ft_atoi(av[3]);
 	share->to_sleep = ft_atoi(av[4]);
 	share->forks_mu = malloc(sizeof(pthread_mutex_t) * share->num_philos);
+	share->print_dead = 0;
 	if (!share->forks_mu)
 		return (0);
 	share->fork = malloc(sizeof(int) * share->num_philos);
@@ -74,10 +74,6 @@ int	init_philo(t_philo *philo, t_share *share)
 			philo[i].rf = &share->fork[0];
 		else
 			philo[i].rf = &share->fork[i + 1];
-		// if (philo[i].id == 0)
-		// 	philo[i].lf = &share->fork[share->num_philos - 1];
-		// else
-		// 	philo[i].lf = &share->fork[philo[i].id - 1];
 		i++;
 	}
 	return (1);

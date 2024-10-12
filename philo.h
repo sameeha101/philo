@@ -27,15 +27,15 @@ typedef struct s_share
 	int				died;
 	int				meals_r;
 	int				*fork;
+	int				print_dead;
 	size_t			to_die;
 	size_t			to_eat;
 	size_t			to_sleep;
 	size_t			start_time;
 	pthread_mutex_t	write_lock;
-	pthread_mutex_t	starting;
 	pthread_mutex_t	ending;
-	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	*forks_mu;
+	pthread_mutex_t	printed;
 }	t_share;
 
 typedef struct s_philo
@@ -70,16 +70,12 @@ void	printing(t_philo *philo, char *str);
 void	threading(t_philo *philo, t_share *share);
 int		check_left(t_philo *philo);
 int		check_right(t_philo *philo);
-int		check_da_meals(t_philo *philo);
 int		check_da_forks(t_philo *philo);
-int		take_rf(t_philo *philo);
-int		take_lf(t_philo *philo);
 int		taking_forks(t_philo *philo);
 int		dropping_forks(t_philo *philo);
-int		check_da_time(t_philo *philo, t_share *share);
 int		setting_da_end(t_philo *philo);
 int		check_da_ending(t_philo *philo);
-int		check_if_death(t_philo *philo);
-void	*monitoring(void *p);
+void	grab_lfork(t_philo *philo);
+void	grab_rfork(t_philo *philo);
 
 #endif

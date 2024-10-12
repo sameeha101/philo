@@ -36,27 +36,12 @@ int	check_right(t_philo *philo)
 	return (0);
 }
 
-int	check_da_meals(t_philo *philo)
-{
-	if (philo->share->meals_r == -1)
-		return (0);
-	pthread_mutex_lock(&philo->share->meal_lock);
-	if (philo->meals >= philo->share->meals_r)
-	{
-		pthread_mutex_unlock(&philo->share->meal_lock);
-		return (1);
-	}
-	pthread_mutex_unlock(&philo->share->meal_lock);
-	return (0);
-}
-
 int	check_da_forks(t_philo *philo)
 {
 	while (!check_da_ending(philo))
 	{
-		if ((check_right(philo) || check_left(philo)) && !check_da_ending(philo))
-			// ft_usleep(25, philo);
-			;
+		if (check_right(philo) || check_left(philo))
+			usleep(100);
 		else
 			break ;
 	}
